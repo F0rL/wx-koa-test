@@ -5,6 +5,7 @@ class InitManager {
   static initCore(app) {
     InitManager.app = app
     InitManager.initLoadRouters()
+    // InitManager.loadHttpException()
   }
   static initLoadRouters() {
     // path config
@@ -17,6 +18,11 @@ class InitManager {
       }
     }
   }
+  // 挂载到全局，不推荐
+  // static loadHttpException() {
+  //   const errors = require('../core/http-exception')
+  //   global.errs = errors
+  // }
 }
 
 module.exports = InitManager
