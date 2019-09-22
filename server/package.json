@@ -1,0 +1,20 @@
+{
+  "name": "koa-server",
+  "version": "1.0.0",
+  "description": "koa MySQL",
+  "main": "app.js",
+  "scripts": {
+    "port": "cross-env PORT=4000 node app.js",
+    "server": "cross-env nodemon app.js"
+  },
+  "author": "F0rl",
+  "license": "ISC",
+  "dependencies": {
+    "cross-env": "^6.0.0",
+    "koa": "^2.8.1",
+    "koa-router": "^7.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.2"
+  }
+}
