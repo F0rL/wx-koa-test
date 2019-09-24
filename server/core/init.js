@@ -10,6 +10,7 @@ class InitManager {
     InitManager.loadConfig()
   }
 
+  //自动加载router
   static initLoadRouters() {
     // path config
     const apiDirectory = `${process.cwd()}/app/api`
@@ -22,6 +23,7 @@ class InitManager {
     }
   }
 
+  //自动加载全局config
   static loadConfig(path = '') {
     const configPath = path || process.cwd() + `/config/config.js`
     const config = require(configPath)

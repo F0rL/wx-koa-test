@@ -5,7 +5,7 @@ const {
   ParameterException
 } = require("../../../core/http-exception");
 
-const { PositiveIntegerValidator } = require("../../lib/validators/validator");
+const { PositiveIntegerValidator } = require("../../validators/validator");
 
 router.post("/v1/:id/book", async (ctx, next) => {
   const path = ctx.params; // id
