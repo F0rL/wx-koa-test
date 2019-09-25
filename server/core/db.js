@@ -28,7 +28,7 @@ const sequelize = new Sequelize(dbName,user,password,{
 })
 
 sequelize.sync({
-  force: true // 强制删除数据库再重建
+  force: false // 强制删除数据库再重建
 }) // 不加这句不导入数据库
 
 module.exports = {
