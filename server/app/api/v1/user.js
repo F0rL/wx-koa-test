@@ -1,4 +1,6 @@
 const Router = require("koa-router");
+const bcrypt = require('bcryptjs')
+
 const {User} = require('../../models/user')
 const { RegisterValidator } = require("../../validators/validator");
 const router = new Router({
@@ -10,9 +12,11 @@ const router = new Router({
 router.post("/register", async (ctx, next) => {
   //validator必须位于第一行，起到守门员的作用
   const v = await new RegisterValidator().validate(ctx);
+  const salt = bcrypt.genSaltSync(10)
+  const psw = bcrypt.hashSync(v.get('body.password1'))
   const user = {
     email: v.get('body.email'),
-    password: v.get('body.password1'),
+    password: psw,
     nickname: v.get('body.nickname')
   }
   User.create(user)

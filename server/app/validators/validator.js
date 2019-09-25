@@ -38,7 +38,9 @@ class RegisterValidator extends LinValidator {
   async validateEmail(vals) {
     const email = vals.body.email
     const user = await User.findOne({
-      email: email
+      where: {
+        email: email
+      }
     })
     if(user) {
       throw new Error('email已存在')

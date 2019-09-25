@@ -5,11 +5,12 @@
   "main": "app.js",
   "scripts": {
     "port": "cross-env PORT=4000 node app.js",
-    "server": "cross-env nodemon app.js"
+    "dev": "cross-env nodemon app.js"
   },
   "author": "F0rl",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "cross-env": "^6.0.0",
     "jsonwebtoken": "^8.5.1",
     "koa": "^2.8.1",
