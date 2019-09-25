@@ -5,8 +5,9 @@ class InitManager {
 
   static initCore(app) {
     InitManager.app = app
+    //初始化
     InitManager.initLoadRouters()
-    // InitManager.loadHttpException()
+    InitManager.loadHttpException()
     InitManager.loadConfig()
   }
 
@@ -29,11 +30,11 @@ class InitManager {
     const config = require(configPath)
     global.config = config
   }
-  // 挂载到全局，不推荐
-  // static loadHttpException() {
-  //   const errors = require('../core/http-exception')
-  //   global.errs = errors
-  // }
+  //error处理挂载到全局，不推荐
+  static loadHttpException() {
+    const errors = require('../core/http-exception')
+    global.errs = errors
+  }
 }
 
 module.exports = InitManager
