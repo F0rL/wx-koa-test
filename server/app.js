@@ -5,8 +5,6 @@ const InitManager = require('./core/init')
 const catchError = require('./middlewares/exception')
 const app = new Koa();
 
-require('./app/models/user')
-
 app.use(bodyParser())
 app.use(catchError)
 InitManager.initCore(app)
