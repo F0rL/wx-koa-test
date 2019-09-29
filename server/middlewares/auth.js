@@ -7,6 +7,7 @@ class Auth {
     Auth.ADMIN = 16
     Auth.SUPER_ADMIN = 32
   }
+  //中间件的方式验证token
   get m(){
     return async (ctx, next)=>{
       const userToken = basicAuth(ctx.req)
@@ -36,6 +37,14 @@ class Auth {
       }
 
       await next()
+    }
+  }
+  static verifyToken(userToken){
+    try{
+      jwt.verify(userToken, global.config.security.secretKey)
+      return true
+    }catch(error){
+      return false
     }
   }
 }
