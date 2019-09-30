@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+js-base64@^2.5.1:
+  version "2.5.1"
+  resolved "https://registry.npm.taobao.org/js-base64/download/js-base64-2.5.1.tgz#1efa39ef2c5f7980bb1784ade4a8af2de3291121"
+  integrity sha1-Hvo57yxfeYC7F4St5KivLeMpESE=
+
 lin-ui@^0.6.5:
   version "0.6.5"
   resolved "https://registry.npm.taobao.org/lin-ui/download/lin-ui-0.6.5.tgz#9ec7c291dd266602ca508870c8635d88e8cdb1b9"
