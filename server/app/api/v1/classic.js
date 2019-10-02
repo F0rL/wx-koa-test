@@ -2,6 +2,7 @@ const Router = require("koa-router");
 
 const {Auth} = require('../../../middlewares/auth')
 const {Flow} = require('../../models/flow')
+const {Art} = require('../../models/art')
 
 const router = new Router({
   prefix: '/v1/classic'
@@ -18,7 +19,12 @@ router.get("/lastest", new Auth().m, async(ctx, next)=>{
       ['index','DESC']
     ]
   })
-  ctx.body = flow
+  const art = await Art.getData(flow.art_id, flow.type)
+  // art是一个类，对象序列化json
+  art.setDataValue('index', flow.index)
+  // 下面的方法不严谨
+  // art.dataValues.index = flow.index
+  ctx.body = art
 })
 
 module.exports = router
