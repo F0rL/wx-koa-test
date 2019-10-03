@@ -1,7 +1,7 @@
 const { LinValidator, Rule } = require("../../core/lin-validator-v2");
 
 const { User } = require("../models/user");
-const { LoginType } = require("../lib/enum");
+const { LoginType, ArtType } = require("../lib/enum");
 
 class PositiveIntegerValidator extends LinValidator {
   constructor() {
@@ -97,10 +97,39 @@ function checkType(vals) {
   }
 }
 
+function checkArtType(vals) {
+  const type = vals.body.type || vals.path.type
+  if (!type) {
+    throw new Error("type是必选参数");
+  }
+  if (!ArtType.isThisType(type)) {
+    throw new Error("type参数不合法");
+  }
+}
+
+// 类的方式 进一步验证type是否合法，是否是以定义的type中的一种
+// class Checker {
+//   constructor(type){
+//     this.enumType = type
+//   }
+//   check(vals) {
+//     const type = vals.body.type || vals.path.type
+//     if (!type) {
+//       throw new Error("type是必选参数");
+//     }
+//     if (!this.enumType.isThisType(type)) {
+//       throw new Error("type参数不合法");
+//     }
+//   }
+// }
+
 class LikeValidator extends PositiveIntegerValidator {
   constructor(){
     super()
-    this.validateType = checkType
+    this.validateType = checkArtType
+    //用类的方式解决
+    // const checker = new Checker(ArtType)
+    // this.validateType = checker.check.bind(checker)
   }
 }
 
