@@ -1,6 +1,7 @@
 function isThisType(val) {
   for(let key in this) {
     //如果使用===,在使用x-www-form-urlencoded时值为字符串，只能用Json的方式
+    //这个解决方法不好，会照成检测不出type是否合法
     if(this[key] == val){
       return true
     }

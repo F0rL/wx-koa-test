@@ -109,5 +109,17 @@ Page({
         console.log(res.data)
       }
     })
+  },
+  onGetClassicFavor(){
+    wx.request({
+      url: 'http://localhost:3000/v1/classic/100/1/favor',
+      method: 'GET',
+      header: {
+        Authorization: this._encode()
+      },
+      success: res=>{
+        console.log(res.data)
+      }
+    })
   }
 })

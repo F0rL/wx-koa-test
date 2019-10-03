@@ -14,6 +14,9 @@ class Art {
     }
     //修复一个bug，使用scope后，查询数据库再做操作会出现报错
     const scope = useScope ? 'bh' : null
+    // 为了兼容 type 为字符串,lib/enum 里面放宽了检测
+    // 自己改的，非规范
+    type = parseInt(type)
     switch (type) {
       case 100:
           art = await Movie.scope(scope).findOne(finder)

@@ -5,7 +5,7 @@ const { Flow } = require("@models/flow");
 const { Art } = require("@models/art");
 const { Favor } = require("@models/favor");
 
-const { PositiveIntegerValidator } = require("@validator/validator");
+const { PositiveIntegerValidator, classicValidator } = require("@validator/validator");
 const router = new Router({
   prefix: "/v1/classic"
 });
@@ -14,6 +14,7 @@ router.get("/", async (ctx, next) => {
   ctx.body = { key: "classic name" };
 });
 
+//最新信息
 router.get("/lastest", new Auth().m, async (ctx, next) => {
   //排序查找最新
   const flow = await Flow.findOne({
@@ -33,6 +34,7 @@ router.get("/lastest", new Auth().m, async (ctx, next) => {
   ctx.body = art;
 });
 
+//下一期信息
 router.get("/:index/next", new Auth().m, async (ctx, next) => {
   const v = await new PositiveIntegerValidator().validate(ctx, {
     id: 'index'
@@ -57,6 +59,7 @@ router.get("/:index/next", new Auth().m, async (ctx, next) => {
   ctx.body = art;
 });
 
+//上一期信息
 router.get("/:index/previous", new Auth().m, async (ctx, next) => {
   const v = await new PositiveIntegerValidator().validate(ctx, {
     id: 'index'
@@ -80,4 +83,25 @@ router.get("/:index/previous", new Auth().m, async (ctx, next) => {
   art.setDataValue("like_status", likePrevious);
   ctx.body = art;
 });
+
+// 获取点赞情况
+router.get('/:type/:id/favor', new Auth().m, async (ctx, next) => {
+  const v = await new classicValidator().validate(ctx)
+  const id = v.get('path.id')
+  const type = v.get('path.type')
+  const art = await Art.getData(id, type)
+  if(!art) {
+    throw new global.errs.NotFound()
+  }
+  const like = await Favor.userLikeIt(
+    id,
+    type,
+    ctx.auth.uid
+  );
+  ctx.body = {
+    fav_nums: art.fav_nums,
+    like_status: like
+  }
+})
+
 module.exports = router;
