@@ -25,7 +25,8 @@ class Favor extends Model {
         type,
         uid
       }, {transaction: t})
-      const art = await Art.getData(art_id, type)
+      //修复一个bug，提供是否使用scope参数
+      const art = await Art.getData(art_id, type,false)
       await art.increment('fav_nums', {by: 1, transaction: t})
     })
   }
@@ -46,7 +47,7 @@ class Favor extends Model {
         force: true,
         transaction: t,
       })
-      const art = await Art.getData(art_id, type)
+      const art = await Art.getData(art_id, type,false)
       await art.decrement('fav_nums', {by: 1, transaction: t})
     })
   }
