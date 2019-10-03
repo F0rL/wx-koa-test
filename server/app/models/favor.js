@@ -1,5 +1,5 @@
 const { sequelize } = require("../../core/db");
-const { Sequelize, Model } = require("sequelize");
+const { Sequelize, Model, Op } = require("sequelize");
 const { Art } = require('./art')
 
 class Favor extends Model {
@@ -60,6 +60,22 @@ class Favor extends Model {
       }
     })
     return favor ? true : false
+  }
+
+  static async getMyClassicFavors(uid) {
+    const arts = await Favor.findAll({
+      where: {
+        uid,
+        type: {
+          [Op.not]: 400
+        }
+      }
+    })
+    if(arts.length === 0){
+      throw new global.errs.NotFound()
+    }
+    //循环查询数据库非常危险
+    return await Art.getList(arts)
   }
 }
 

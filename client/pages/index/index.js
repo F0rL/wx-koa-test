@@ -121,5 +121,17 @@ Page({
         console.log(res.data)
       }
     })
+  },
+  onGetMyFavorList(){
+    wx.request({
+      url: 'http://localhost:3000/v1/classic/favor',
+      method: 'GET',
+      header: {
+        Authorization: this._encode()
+      },
+      success: res=>{
+        console.log(res.data)
+      }
+    })
   }
 })
