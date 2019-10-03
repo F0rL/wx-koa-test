@@ -11,7 +11,8 @@
   "license": "ISC",
   "_moduleAliases":{
     "@root": ".",
-    "@models": "app/models"
+    "@models": "app/models",
+    "@validator": "app/validators"
   },
   "dependencies": {
     "axios": "^0.19.0",

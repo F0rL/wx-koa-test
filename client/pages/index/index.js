@@ -70,22 +70,6 @@ Page({
       }
     })
   },
-  onLike(){
-    wx.request({
-      url: 'http://localhost:3000/v1/like',
-      method: 'POST',
-      header: {
-        Authorization: this._encode()
-      },
-      data: {
-        art_id: 1,
-        type: 100
-      },
-      success: res=>{
-        console.log(res.data)
-      }
-    })
-  },
   disLike(){
     wx.request({
       url: 'http://localhost:3000/v1/like/cancel',
@@ -102,4 +86,28 @@ Page({
       }
     })
   },
+  onGetNext(){
+    wx.request({
+      url: 'http://localhost:3000/v1/classic/6/next',
+      method: 'GET',
+      header: {
+        Authorization: this._encode()
+      },
+      success: res=>{
+        console.log(res.data)
+      }
+    })
+  },
+  onGetPrevious(){
+    wx.request({
+      url: 'http://localhost:3000/v1/classic/6/previous',
+      method: 'GET',
+      header: {
+        Authorization: this._encode()
+      },
+      success: res=>{
+        console.log(res.data)
+      }
+    })
+  }
 })
