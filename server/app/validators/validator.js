@@ -55,7 +55,7 @@ class RegisterValidator extends LinValidator {
 
 class TokenValidator extends LinValidator {
   constructor() {
-    super()
+    super();
     this.account = [
       new Rule("isLength", "不符合账号规则", { min: 4, max: 32 })
     ];
@@ -77,18 +77,16 @@ class TokenValidator extends LinValidator {
   }
 }
 
-class NotEmptyValidator extends LinValidator{
-  constructor(){
-    super()
-    this.token = [
-      new Rule('isLength','不允许为空',{min: 1})
-    ]
+class NotEmptyValidator extends LinValidator {
+  constructor() {
+    super();
+    this.token = [new Rule("isLength", "不允许为空", { min: 1 })];
   }
 }
 
 // 提取type检测
 function checkType(vals) {
-  const type = vals.body.type || vals.path.type
+  const type = vals.body.type || vals.path.type;
   if (!type) {
     throw new Error("type是必选参数");
   }
@@ -98,7 +96,7 @@ function checkType(vals) {
 }
 
 function checkArtType(vals) {
-  const type = vals.body.type || vals.path.type
+  const type = vals.body.type || vals.path.type;
   if (!type) {
     throw new Error("type是必选参数");
   }
@@ -124,24 +122,42 @@ function checkArtType(vals) {
 // }
 
 class LikeValidator extends PositiveIntegerValidator {
-  constructor(){
-    super()
-    this.validateType = checkArtType
+  constructor() {
+    super();
+    this.validateType = checkArtType;
     //用类的方式解决
     // const checker = new Checker(ArtType)
     // this.validateType = checker.check.bind(checker)
   }
 }
 
-class classicValidator extends LikeValidator {
+class classicValidator extends LikeValidator {}
 
+class SearchValidator extends LinValidator {
+  constructor() {
+    super();
+    this.q = [
+      new Rule("isLength", "搜索关键词不能为空", {
+        min: 1,
+        max: 16
+      })
+    ];
+    this.start = [
+      new Rule("isInt", "不符合规范", { min: 0, max: 60000 }),
+      new Rule("isOptional", "", 0)
+    ];
+    this.count = [
+      new Rule("isInt", "不符合规范", { min: 1, max: 20 }),
+      new Rule("isOptional", "", 20)
+    ];
+  }
 }
-
 module.exports = {
   PositiveIntegerValidator,
   RegisterValidator,
   TokenValidator,
   NotEmptyValidator,
   LikeValidator,
-  classicValidator
+  classicValidator,
+  SearchValidator
 };

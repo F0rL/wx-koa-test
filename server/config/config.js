@@ -19,6 +19,6 @@ module.exports = {
   },
   yushu: {
     detailUrl: 'http://t.yushu.im/v2/book/id/%s',
-    keywordUrl: 'http://t.yushu.im/v2/book/search?q=%s&count=%s&start=%s&summary=%s'
+    keywordUrl: 'http://t.yushu.im/v2/book/search?q=%s&start=%s&count=%s&summary=%s'
   }
 }

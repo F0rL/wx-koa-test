@@ -10,3 +10,4 @@
 <l-button type="error" l-class="btn" size="long" bind:lintap="disLike">取消点赞</l-button>
 <l-button type="success" l-class="btn" size="long" bind:lintap="onGetHotList">获取热门书籍列表</l-button>
 <l-button type="success" l-class="btn" size="long" bind:lintap="onGetOneBook">获取指定书籍列表</l-button>
+<l-button type="success" l-class="btn" size="long" bind:lintap="onSearchBook">搜索书籍</l-button>

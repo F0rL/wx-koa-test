@@ -169,5 +169,21 @@ Page({
         console.log(res.data)
       }
     })
+  },
+  onSearchBook(){
+    wx.request({
+      url: 'http://localhost:3000/v1/book/search',
+      method: 'GET',
+      data: {
+        q: '东野圭吾',
+        count: '5'
+      },
+      header: {
+        Authorization: this._encode()
+      },
+      success: res=>{
+        console.log(res.data)
+      }
+    })
   }
 })
