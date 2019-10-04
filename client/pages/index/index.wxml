@@ -3,6 +3,7 @@
 <l-button type="warning" l-class="btn" size="long" bind:lintap="onGetLatest">获取最新期刊</l-button>
 <l-button type="warning" l-class="btn" size="long" bind:lintap="onGetNext">获取下一期</l-button>
 <l-button type="warning" l-class="btn" size="long" bind:lintap="onGetPrevious">获取上一期</l-button>
+<l-button type="warning" l-class="btn" size="long" bind:lintap="onGetOne">获取某一期</l-button>
 <l-button type="warning" l-class="btn" size="long" bind:lintap="onGetClassicFavor">获取单个点赞情况</l-button>
 <l-button type="warning" l-class="btn" size="long" bind:lintap="onGetMyFavorList">获取所有点赞情况</l-button>
 <l-button type="error" l-class="btn" size="long" bind:lintap="onLike">点赞</l-button>

@@ -1,9 +1,29 @@
-const { Movie, Music, Sentence } = require("./classic");
-
 const { Op } = require("sequelize");
 const { flatten } = require("lodash");
 
+const { Movie, Music, Sentence } = require("./classic");
 class Art {
+  constructor(art_id, type) {
+    this.art_id = art_id;
+    this.type = type;
+  }
+
+  async getDetail(uid) {
+    // favor art 循环导入，可能会出全新啊Favor为null
+    const { Favor } = require("./favor");
+
+    const art = await Art.getData(this.art_id, this.type);
+    if (!art) {
+      throw new global.errs.NotFound();
+    }
+    const like = await Favor.userLikeIt(this.art_id, this.type, uid);
+
+    return {
+      art,
+      like_status: like
+    };
+  }
+
   static async getData(art_id, type, useScope = true) {
     let art = null;
     const finder = {

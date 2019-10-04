@@ -84,23 +84,37 @@ router.get("/:index/previous", new Auth().m, async (ctx, next) => {
   ctx.body = art;
 });
 
+// 获取某一个期刊的详细信息
+// 如果只有少数几次复用，不建议重构，会损失灵活性
+router.get('/:type/:id', new Auth().m, async(ctx, next) => {
+  const v = await new classicValidator().validate(ctx)
+  const id = v.get('path.id')
+  const type = v.get('path.type')
+
+  const artDetail = await new Art(id, type).getDetail(ctx.auth.uid)
+  artDetail.art.setDataValue('like_status', artDetail.like_status)
+  ctx.body = artDetail.art
+})
+
 // 获取点赞情况
 router.get('/:type/:id/favor', new Auth().m, async (ctx, next) => {
   const v = await new classicValidator().validate(ctx)
   const id = v.get('path.id')
   const type = v.get('path.type')
-  const art = await Art.getData(id, type)
-  if(!art) {
-    throw new global.errs.NotFound()
-  }
-  const like = await Favor.userLikeIt(
-    id,
-    type,
-    ctx.auth.uid
-  );
+  // const art = await Art.getData(id, type)
+  // if(!art) {
+  //   throw new global.errs.NotFound()
+  // }
+  // const like = await Favor.userLikeIt(
+  //   id,
+  //   type,
+  //   ctx.auth.uid
+  // );
+  //根据'/:type/:id'接口优化，实例化类方法
+  const artDetail = await new Art(id, type).getDetail(ctx.auth.uid)
   ctx.body = {
-    fav_nums: art.fav_nums,
-    like_status: like
+    fav_nums: artDetail.art.fav_nums,
+    like_status: artDetail.like_status
   }
 })
 

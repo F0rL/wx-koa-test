@@ -133,5 +133,17 @@ Page({
         console.log(res.data)
       }
     })
+  },
+  onGetOne(){
+    wx.request({
+      url: 'http://localhost:3000/v1/classic/200/1',
+      method: 'GET',
+      header: {
+        Authorization: this._encode()
+      },
+      success: res=>{
+        console.log(res.data)
+      }
+    })
   }
 })
