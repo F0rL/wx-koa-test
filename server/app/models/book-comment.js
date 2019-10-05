@@ -30,6 +30,14 @@ class Comment extends Model {
     });
     return comments;
   }
+
+  //JSON序列化原理在~/jsontest.js
+  toJSON(){
+    return {
+      content: this.getDataValue('content'),
+      nums: this.getDataValue('nums')
+    }
+  }
 }
 
 Comment.init(
