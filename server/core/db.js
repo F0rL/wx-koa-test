@@ -1,5 +1,5 @@
 const {Sequelize, Model} = require('sequelize')
-const { unset, clone } = require('lodash')
+const { unset, clone, isArray } = require('lodash')
 
 const {
   dbName,
@@ -43,9 +43,16 @@ sequelize.sync({
 Model.prototype.toJSON = function(){
   // let data = this.dataValues
   let data = clone(this.dataValues)
-  unset(data, 'updated_at')
-  unset(data, 'created_at')
-  unset(data, 'deleted_at')
+
+  // unset(data, 'updated_at')
+  // unset(data, 'created_at')
+  // unset(data, 'deleted_at')
+
+  if(isArray(this.exclude)){
+    this.exclude.forEach(value => {
+      unset(data, value)
+    })
+  }
   return data
 }
 

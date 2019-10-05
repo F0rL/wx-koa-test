@@ -40,6 +40,10 @@ class Comment extends Model {
   // }
 }
 
+//全局model JSON序列化 不推荐挂载到原型链  写死了
+// Comment.prototype.exclude = ['book_id', 'id']
+
+
 Comment.init(
   {
     content: Sequelize.STRING(12),

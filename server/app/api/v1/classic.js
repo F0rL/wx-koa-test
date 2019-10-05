@@ -31,6 +31,9 @@ router.get("/lastest", new Auth().m, async (ctx, next) => {
   art.setDataValue("like_status", likeLatest);
   // 下面的方法不严谨
   // art.dataValues.index = flow.index
+
+  //全局model JSON序列化
+  // art.exclude = ['index','like_status','title']
   ctx.body = art;
 });
 
