@@ -185,5 +185,29 @@ Page({
         console.log(res.data)
       }
     })
+  },
+  onGetFavorCount(){
+    wx.request({
+      url: 'http://localhost:3000/v1/book/favor/count',
+      method: 'GET',
+      header: {
+        Authorization: this._encode()
+      },
+      success: res=>{
+        console.log(res.data)
+      }
+    })
+  },
+  onGetBookFavor(){
+    wx.request({
+      url: 'http://localhost:3000/v1/book/1061/favor',
+      method: 'GET',
+      header: {
+        Authorization: this._encode()
+      },
+      success: res=>{
+        console.log(res.data)
+      }
+    })
   }
 })

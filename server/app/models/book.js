@@ -3,6 +3,8 @@ const { Sequelize, Model, Op } = require("sequelize");
 const axios = require("axios");
 const util = require("util");
 
+const {Favor} = require('./favor')
+
 class Book extends Model {
   constructor(id) {
     super();
@@ -25,6 +27,16 @@ class Book extends Model {
     //axios发送请求如果是中文需要编码
     const result = await axios.get(url);
     return result.data;
+  }
+
+  static async getMyFavorBookCount(uid){
+    const count = await Favor.count({
+      where: {
+        type: 400,
+        uid
+      }
+    })
+    return count
   }
 }
 
