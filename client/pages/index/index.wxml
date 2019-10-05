@@ -14,3 +14,4 @@
 <l-button type="success" l-class="btn" size="long" bind:lintap="onGetFavorCount">喜欢书籍数量</l-button>
 <l-button type="success" l-class="btn" size="long" bind:lintap="onGetBookFavor">书籍喜欢状态和数量</l-button>
 <l-button l-class="btn" size="long" bind:lintap="onAddBookComment">增加短评</l-button>
+<l-button l-class="btn" size="long" bind:lintap="onSearchBookComment">查询短评</l-button>

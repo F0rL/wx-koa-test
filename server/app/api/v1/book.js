@@ -71,4 +71,27 @@ router.post("/add/short_comment", new Auth().m, async ctx => {
   success()
 });
 
+//查询短评
+router.get('/:book_id/short_comment', new Auth().m, async ctx =>{
+  const v = await new PositiveIntegerValidator().validate(ctx, {
+    id: 'book_id'
+  })
+  const comments = await Comment.getComments(v.get('path.book_id'))
+  ctx.body = comments
+})
+
+//模拟热搜，实际需要机器学习
+router.get('/hot_keyword', async ctx => {
+  ctx.body ={
+    'hot': [
+      'Python',
+      'JavaScript',
+      'Golang',
+      'C#',
+      'Java',
+      'Rust'
+    ]
+  }
+})
+
 module.exports = router;
