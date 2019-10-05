@@ -58,10 +58,11 @@ class Art {
       default:
         break;
     }
-    if(art && art.image){
-      let imgUrl = art.dataValues.image
-      art.dataValues.image = global.config.host + imgUrl
-    }
+    // 每个方法都添加，如果是list结构会要遍历
+    // if(art && art.image){
+    //   let imgUrl = art.dataValues.image
+    //   art.dataValues.image = global.config.host + imgUrl
+    // }
     return art;
   }
 
