@@ -209,5 +209,21 @@ Page({
         console.log(res.data)
       }
     })
+  },
+  onAddBookComment(){
+    wx.request({
+      url: 'http://localhost:3000/v1/book/add/short_comment',
+      method: 'POST',
+      data: {
+        book_id: 1061,
+        content: '写的不错写的不错写的不错写的不错写的不错写的不错'
+      },
+      header: {
+        Authorization: this._encode()
+      },
+      success: res=>{
+        console.log(res.data)
+      }
+    })
   }
 })
