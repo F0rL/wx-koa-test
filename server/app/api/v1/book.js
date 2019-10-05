@@ -22,16 +22,14 @@ const router = new Router({
 // 业务 图书业务数据
 router.get("/hot_list", new Auth().m, async (ctx, next) => {
   const books = await HotBook.getAll();
-  ctx.body = {
-    books
-  };
+  ctx.body = books
 });
 
 //指定书籍
 router.get("/:id/detail", new Auth().m, async (ctx, next) => {
   const v = await new PositiveIntegerValidator().validate(ctx);
-  const book = new Book(v.get("path.id"));
-  ctx.body = await book.detail();
+  const book = new Book();
+  ctx.body = await book.detail(v.get("path.id"));
 });
 
 //搜索

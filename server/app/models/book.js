@@ -7,12 +7,12 @@ const {Favor} = require('./favor')
 
 class Book extends Model {
   //Model里面不要用构造函数，如果涉及到查询会丢失除设置了defaultValue的字段
-  constructor(id) {
-    super();
-    this.id = id;
-  }
-  async detail() {
-    const url = util.format(global.config.yushu.detailUrl, this.id);
+  // constructor(id) {
+  //   super();
+  //   this.id = id;
+  // }
+  async detail(id) {
+    const url = util.format(global.config.yushu.detailUrl, id);
     const detail = await axios.get(url);
     return detail.data;
   }
