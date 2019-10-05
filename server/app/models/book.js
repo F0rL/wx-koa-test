@@ -6,6 +6,7 @@ const util = require("util");
 const {Favor} = require('./favor')
 
 class Book extends Model {
+  //Model里面不要用构造函数，如果涉及到查询会丢失除设置了defaultValue的字段
   constructor(id) {
     super();
     this.id = id;
