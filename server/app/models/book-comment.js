@@ -32,12 +32,12 @@ class Comment extends Model {
   }
 
   //JSON序列化原理在~/jsontest.js
-  toJSON(){
-    return {
-      content: this.getDataValue('content'),
-      nums: this.getDataValue('nums')
-    }
-  }
+  // toJSON(){
+  //   return {
+  //     content: this.getDataValue('content'),
+  //     nums: this.getDataValue('nums')
+  //   }
+  // }
 }
 
 Comment.init(

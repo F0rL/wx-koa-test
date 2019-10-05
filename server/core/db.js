@@ -1,4 +1,5 @@
-const Sequelize = require('sequelize')
+const {Sequelize, Model} = require('sequelize')
+const { unset, clone } = require('lodash')
 
 const {
   dbName,
@@ -38,6 +39,15 @@ const sequelize = new Sequelize(dbName,user,password,{
 sequelize.sync({
   force: false // 强制删除数据库再重建
 }) // 不加这句不导入数据库
+
+Model.prototype.toJSON = function(){
+  // let data = this.dataValues
+  let data = clone(this.dataValues)
+  unset(data, 'updated_at')
+  unset(data, 'created_at')
+  unset(data, 'deleted_at')
+  return data
+}
 
 module.exports = {
   sequelize
