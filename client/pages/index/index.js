@@ -38,7 +38,7 @@ Page({
   },
   onGetLatest(){
     wx.request({
-      url: 'http://localhost:3000/v1/classic/lastest',
+      url: 'http://localhost:3000/v1/classic/latest',
       method: 'GET',
       success: res=>{
         console.log(res)

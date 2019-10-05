@@ -15,7 +15,7 @@ router.get("/", async (ctx, next) => {
 });
 
 //最新信息
-router.get("/lastest", new Auth().m, async (ctx, next) => {
+router.get("/latest", new Auth().m, async (ctx, next) => {
   //排序查找最新
   const flow = await Flow.findOne({
     order: [["index", "DESC"]]
