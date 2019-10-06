@@ -27,3 +27,5 @@ app.listen(port);
 // js css html某些情况下可以是静态资源
 // vue/react 前端单页面 SEO困难 还是做后台CMS webApp
 // to C 还是用模板 SSR
+
+// 小程序开发独立
