@@ -15,7 +15,7 @@ app.use(static(path.join(__dirname,'./static')))
 InitManager.initCore(app)
 
 // app.use(router.routes()).use(router.allowedMethods());
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3002;
 app.listen(port);
 
 // 静态资源 图片等 消耗流量
